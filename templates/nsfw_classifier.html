@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Content Moderation</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style-predict.css') }}">
+</head>
+<body>
+	<div class = 'form-descrip'>
+		<h1>NSFW Classifier</h1>
+	</div>
+	<div class = 'form-upload'>
+		<form id = 'image_object' action = '/predict' enctype = multipart/form-data method = 'POST'>
+			<br>
+			<label for = 'image'>Please upload an image of the room.</label><br>
+			<input name = 'image' type="file" id = "img" onchange="uploadFile()"><br>
+			<h2>Or</h2>
+			<input name = 'url' type="text" id = "img_url" placeholder="Paste image url" ><br>
+			<input type = 'submit' class = 'application-input submit' value = 'Upload'><br>
+		</form>
+	</div>
+	<div class = 'uploaded-image'>
+		{% if image_loc %}
+			<h3>Detected objects are:<h3>
+			<font size = 3>{{predicted_class}}<br><br></font>
+			<img src = "{{image_loc}}" height = "600" width = "800">
+		{% endif %}
+	</div>
+	
+
+</body>
+</html>
